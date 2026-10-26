@@ -14,9 +14,9 @@ on:
           - fix-perms
           - diagnose
       remote_dir:
-        description: "서버 경로 (FTP 루트가 웹루트면 /)"
+        description: "서버 경로 (iwinv: /public_html/)"
         required: true
-        default: "/"
+        default: "/public_html/"
 
 permissions:
   contents: write
