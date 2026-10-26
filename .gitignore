@@ -1,0 +1,18 @@
+__MACOSX/
+**/.DS_Store
+**/._*
+
+# 그누보드 런타임·민감 데이터 (FTP 서버에만 유지)
+public_html/data/dbconfig.php
+public_html/data/cache/
+public_html/data/session/
+public_html/data/log/
+public_html/data/tmp/
+public_html/data/file/
+public_html/data/editor/
+public_html/data/backup/
+public_html/data/member_image/
+public_html/data/push/
+
+# 일회성 보안 스크립트
+public_html/adminpw.php

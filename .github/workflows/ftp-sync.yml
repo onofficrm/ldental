@@ -1,0 +1,97 @@
+name: FTP Sync
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "list: 폴더 목록 / pull: 서버 → GitHub / fix-perms: 권한 복구 / diagnose: 연결 진단"
+        required: true
+        default: list
+        type: choice
+        options:
+          - list
+          - pull
+          - fix-perms
+          - diagnose
+      remote_dir:
+        description: "서버 경로 (FTP 루트가 웹루트면 /)"
+        required: true
+        default: "/"
+
+permissions:
+  contents: write
+
+jobs:
+  ftp:
+    runs-on: ubuntu-latest
+    env:
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}
+      FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+      FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+      FTP_PORT: ${{ secrets.FTP_PORT }}
+      REMOTE_DIR: ${{ inputs.remote_dir }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Prepare lftp
+        run: |
+          cat > ~/.lftprc <<EOF
+          set ftp:ssl-allow true
+          set ssl:verify-certificate false
+          set ftp:passive-mode true
+          set net:timeout 30
+          set net:max-retries 3
+          EOF
+
+      - name: Diagnose
+        if: inputs.mode == 'diagnose'
+        run: |
+          check() {
+            local name="$1" value="$2"
+            local trimmed="$(printf '%s' "$value" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+            echo "$name: length=${#value}, trimmed_length=${#trimmed}"
+          }
+          check FTP_SERVER "$FTP_SERVER"
+          check FTP_USERNAME "$FTP_USERNAME"
+          check FTP_PASSWORD "$FTP_PASSWORD"
+          check FTP_PORT "$FTP_PORT"
+          printf 'machine %s\nlogin %s\npassword %s\n' "$FTP_SERVER" "$FTP_USERNAME" "$FTP_PASSWORD" > ~/.netrc
+          chmod 600 ~/.netrc
+          curl -s --netrc --list-only --max-time 30 "ftp://$FTP_SERVER:${FTP_PORT:-21}/" -o /dev/null -w "plain_ftp=%{response_code}\n" || true
+          curl -s --netrc --ssl-reqd -k --list-only --max-time 30 "ftp://$FTP_SERVER:${FTP_PORT:-21}/" -o /dev/null -w "ftps=%{response_code}\n" || true
+
+      - name: List
+        if: inputs.mode == 'list'
+        run: |
+          lftp -u "$FTP_USERNAME,$FTP_PASSWORD" -p "${FTP_PORT:-21}" "$FTP_SERVER" \
+            -e "pwd; cls -la '$REMOTE_DIR'; bye"
+
+      - name: Fix permissions
+        if: inputs.mode == 'fix-perms'
+        run: |
+          lftp -u "$FTP_USERNAME,$FTP_PASSWORD" -p "${FTP_PORT:-21}" "$FTP_SERVER" -e "
+            set cmd:fail-exit false;
+            chmod 755 '$REMOTE_DIR';
+            chmod 644 '$REMOTE_DIR/.htaccess';
+            cls -la '$REMOTE_DIR';
+            bye"
+
+      - name: Pull from server
+        if: inputs.mode == 'pull'
+        run: |
+          mkdir -p public_html
+          lftp -u "$FTP_USERNAME,$FTP_PASSWORD" -p "${FTP_PORT:-21}" "$FTP_SERVER" -e "
+            mirror --verbose --parallel=5 \
+              --exclude-glob .ftp-deploy-sync-state.json \
+              --exclude-glob data/dbconfig.php \
+              '$REMOTE_DIR' public_html;
+            bye"
+          find public_html -type f -size +95M -print -delete
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A public_html
+          git commit -m "Import site files from FTP ($REMOTE_DIR)" || echo "No changes"
+          git push
