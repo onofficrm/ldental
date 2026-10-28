@@ -1,5 +1,9 @@
 name: Deploy to FTP
 
+concurrency:
+  group: ftp-deploy-ldental
+  cancel-in-progress: false
+
 on:
   push:
     branches:
