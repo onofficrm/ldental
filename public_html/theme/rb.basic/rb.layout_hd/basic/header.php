@@ -111,7 +111,10 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_THEME_URL.'/rb.layout_hd/'.$rb
                     ?>
                     
                     <?php if ($i == 0) {  ?>
-                    <li><a href="javascript:void(0);">메뉴 준비 중입니다.</a></li>
+                    <li><a href="<?php echo G5_URL ?>/#intro" class="font-B">병원소개</a></li>
+                    <li><a href="<?php echo G5_URL ?>/#service" class="font-B">진료안내</a></li>
+                    <li><a href="<?php echo G5_URL ?>/#hours" class="font-B">진료시간</a></li>
+                    <li><a href="<?php echo G5_URL ?>/#consult" class="font-B">상담예약</a></li>
                     <?php } ?>
                     </ul>
                 </nav>

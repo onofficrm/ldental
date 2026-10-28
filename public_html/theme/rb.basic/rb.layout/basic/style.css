@@ -1,1 +1,89 @@
-/* 레이아웃 CSS */
+/* L Dental homepage */
+.ld-home { width: 100%; color: #1d2a36; }
+.ld-wrap { width: min(1400px, calc(100% - 40px)); margin: 0 auto; }
+.ld-kicker, .ld-sec-head span, .ld-hours span {
+    display: inline-block;
+    letter-spacing: .16em;
+    font-size: 12px;
+    font-weight: 700;
+    color: #2aaeee;
+    margin-bottom: 12px;
+}
+.ld-hero {
+    position: relative;
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #e8f7fd 0%, #ffffff 48%, #f3fbff 100%);
+    padding: 140px 20px 80px;
+}
+.ld-hero__bg {
+    position: absolute;
+    right: -80px;
+    top: 80px;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(42,174,238,.22), transparent 68%);
+    pointer-events: none;
+}
+.ld-hero__inner { width: min(1400px, 100%); margin: 0 auto; position: relative; }
+.ld-hero h1 {
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1.25;
+    font-weight: 800;
+    margin: 0 0 22px;
+    letter-spacing: -0.03em;
+}
+.ld-hero__lead { font-size: 18px; line-height: 1.7; color: #516070; margin: 0 0 36px; }
+.ld-hero__actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.ld-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 148px;
+    height: 52px;
+    padding: 0 24px;
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none !important;
+}
+.ld-btn--primary { background: #2aaeee; color: #fff !important; }
+.ld-btn--ghost { background: #fff; color: #1d2a36 !important; border: 1px solid #d7e3ec; }
+.ld-section { padding: 90px 0; }
+.ld-section--tint { background: #f7fbfd; }
+.ld-sec-head { margin-bottom: 36px; }
+.ld-sec-head h2, .ld-hours h2 { font-size: 34px; margin: 0 0 10px; letter-spacing: -0.03em; }
+.ld-sec-head p { color: #667787; margin: 0; }
+.ld-about, .ld-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.ld-about__card, .ld-grid article {
+    background: #fff;
+    border: 1px solid #e8eef3;
+    border-radius: 20px;
+    padding: 32px 28px;
+    box-shadow: 0 10px 30px rgba(20, 40, 60, .04);
+}
+.ld-about__card strong { color: #2aaeee; font-size: 22px; }
+.ld-about__card h3, .ld-grid article h3 { margin: 12px 0 10px; font-size: 22px; }
+.ld-about__card p, .ld-grid article p { margin: 0; color: #5b6b78; line-height: 1.7; }
+.ld-banner { display: block; overflow: hidden; border-radius: 20px; box-shadow: 0 14px 40px rgba(20,40,60,.08); }
+.ld-banner img { width: 100%; display: block; }
+.ld-section--dark { background: #10222e; color: #fff; }
+.ld-hours { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center; }
+.ld-hours ul { list-style: none; padding: 0; margin: 24px 0 16px; }
+.ld-hours li { display: flex; justify-content: space-between; max-width: 420px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+.ld-hours em { font-style: normal; color: #9ad8f3; }
+.ld-hours__note { color: rgba(255,255,255,.7); margin: 0; }
+.ld-hours__cta { background: rgba(255,255,255,.06); border-radius: 20px; padding: 36px; }
+.ld-hours__cta p { font-size: 22px; line-height: 1.5; margin: 0 0 24px; }
+
+@media (max-width: 1024px) {
+    .ld-about, .ld-grid, .ld-hours { grid-template-columns: 1fr; }
+    .ld-hero { min-height: auto; padding-top: 120px; }
+    .ld-section { padding: 64px 0; }
+}

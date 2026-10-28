@@ -32,6 +32,17 @@ if (!is_array($rb_config) || empty($rb_config['co_layout'])) {
     ), is_array($rb_config) ? $rb_config : array());
 }
 
+if (!is_array($rb_builder) || empty($rb_builder['bu_1'])) {
+    $rb_builder = array_merge(array(
+        'bu_1' => '노경환치과',
+        'bu_2' => '노경환',
+        'bu_3' => '',
+        'bu_8' => 'L Dental',
+        'bu_10' => '',
+        'bu_12' => 'Copyright © 노경환치과. All rights reserved.',
+    ), is_array($rb_builder) ? $rb_builder : array());
+}
+
 $rb_core['theme'] = isset($config['cf_theme']) ? $config['cf_theme'] : ''; // 테마
 $rb_core['layout'] = isset($rb_config['co_layout']) ? $rb_config['co_layout'] : ''; // 레이아웃(메인)
 $rb_core['layout_hd'] = isset($rb_config['co_layout_hd']) ? $rb_config['co_layout_hd'] : ''; // 레이아웃(헤더)
