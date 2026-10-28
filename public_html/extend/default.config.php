@@ -38,3 +38,8 @@ if (!defined('G5_THEME_URL')) {
         }
     }
 }
+
+if (empty($config['cf_title']) || $config['cf_title'] === '그누보드5') {
+    $config['cf_title'] = '노경환치과';
+    $g5['title'] = '노경환치과';
+}

@@ -1,7 +1,7 @@
 <?php
 if (!defined('_GNUBOARD_')) exit;
 
-add_stylesheet('<link rel="stylesheet" href="'.G5_THEME_URL.'/rb.layout/'.$rb_core['layout'].'/style.css?ver='.G5_TIME_YMDHIS.'">', 0);
+add_stylesheet('<link rel="stylesheet" href="'.G5_THEME_URL.'/rb.layout/'.$rb_core['layout'].'/style.css?ver='.G5_SERVER_TIME.'">', 0);
 
 $clinic_name = !empty($config['cf_title']) && $config['cf_title'] !== '그누보드5' ? $config['cf_title'] : '노경환치과';
 $banner_src = G5_DATA_URL.'/banners/thumb-4_835x152.png';

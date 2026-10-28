@@ -20,10 +20,8 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_THEME_URL.'/rb.layout_ft/'.$rb
                     <a href="<?php echo get_pretty_url('content', 'privacy'); ?>">개인정보 처리방침</a>
                 </ul>
                 <ul class="footer_gnb_ul2">
-                    <?php if(defined('G5_COMMUNITY_USE') == false || G5_COMMUNITY_USE) { ?>
-                        <?php if (defined('G5_USE_SHOP') && G5_USE_SHOP) { ?>
+                    <?php if (false && defined('G5_USE_SHOP') && G5_USE_SHOP) { ?>
                         <a href="<?php echo G5_SHOP_URL ?>/">마켓</a>
-                        <?php } ?>
                     <?php } ?>
 
                     <a href="<?php echo G5_BBS_URL ?>/qalist.php">1:1 문의</a>

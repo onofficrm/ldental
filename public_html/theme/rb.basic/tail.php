@@ -97,7 +97,13 @@ if(G5_COMMUNITY_USE === false) {
                     <?php
                     $i++;
                     }   //end foreach $row
+                    if ($i == 0) {
                     ?>
+                    <li><a href="<?php echo G5_URL ?>/#intro" class="font-B">병원소개</a></li>
+                    <li><a href="<?php echo G5_URL ?>/#service" class="font-B">진료안내</a></li>
+                    <li><a href="<?php echo G5_URL ?>/#hours" class="font-B">진료시간</a></li>
+                    <li><a href="<?php echo G5_URL ?>/#consult" class="font-B">상담예약</a></li>
+                    <?php } ?>
                     </ul>
                 </nav>
                 <!-- } -->
