@@ -30,6 +30,10 @@ function ldental_seed_once()
     }
 }
 
+if (is_file(G5_LIB_PATH . '/ldental.seed.phase2.php')) {
+    include_once G5_LIB_PATH . '/ldental.seed.phase2.php';
+}
+
 function ldental_seed_config()
 {
     global $g5, $config;

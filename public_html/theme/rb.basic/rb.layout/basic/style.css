@@ -60,6 +60,8 @@
 .ld-btn--ghost { background: #fff; color: #1d2a36 !important; border: 1px solid #d7e3ec; }
 .ld-hero .ld-btn--ghost { background: rgba(255,255,255,.14); color: #fff !important; border: 1px solid rgba(255,255,255,.4); }
 .ld-section { padding: 90px 0; }
+.ld-board-home { display: grid; grid-template-columns: 1fr 1.2fr; gap: 20px; align-items: stretch; }
+.ld-board-home__col { min-width: 0; }
 .ld-section--tint { background: #f7fbfd; }
 .ld-sec-head { margin-bottom: 36px; }
 .ld-sec-head h2, .ld-hours h2 { font-size: 34px; margin: 0 0 10px; letter-spacing: -0.03em; }
@@ -123,7 +125,7 @@
 .ld-hours__cta .ld-btn { margin: 0 28px 28px; }
 
 @media (max-width: 1024px) {
-    .ld-about-photo, .ld-grid, .ld-hours { grid-template-columns: 1fr; }
+    .ld-about-photo, .ld-grid, .ld-hours, .ld-board-home { grid-template-columns: 1fr; }
     .ld-about-photo > img { min-height: 240px; }
     .ld-hero { min-height: 520px; padding-top: 120px; }
     .ld-section { padding: 64px 0; }

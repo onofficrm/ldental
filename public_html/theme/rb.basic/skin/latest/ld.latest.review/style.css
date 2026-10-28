@@ -1,0 +1,11 @@
+.ld-latest--review .ld-latest__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.ld-latest--review article { border: 1px solid #e8eef3; border-radius: 16px; overflow: hidden; background: #fff; }
+.ld-latest--review article a { display: block; color: inherit !important; text-decoration: none !important; }
+.ld-latest__thumb { height: 140px; overflow: hidden; }
+.ld-latest__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ld-latest--review h3 { margin: 14px 16px 8px; font-size: 17px; letter-spacing: -0.02em; }
+.ld-latest--review p { margin: 0 16px 16px; color: #5b6b78; line-height: 1.6; font-size: 14px; }
+.ld-latest--review .ld-latest__empty { grid-column: 1 / -1; color: #8a9aa8; margin: 0; }
+@media (max-width: 768px) {
+    .ld-latest--review .ld-latest__grid { grid-template-columns: 1fr; }
+}

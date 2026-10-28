@@ -4,7 +4,8 @@ $g5['title'] = '상담예약';
 include_once G5_PATH . '/_head.php';
 
 $care = isset($_GET['care']) ? clean_xss_tags($_GET['care'], 1, 1) : '';
-$token = get_encrypt_string(uniqid('ld', true));
+$done = isset($_GET['done']) && $_GET['done'] === '1';
+$token = bin2hex(random_bytes(16));
 set_session('ld_consult_token', $token);
 $a = rand(1, 8);
 $b = rand(1, 8);
@@ -18,6 +19,10 @@ $cares = array('임플란트', '치아교정', '심미보철', '충치·신경�
         <p class="ld-kicker">CONSULT</p>
         <h1>상담 예약</h1>
         <p class="ld-page__lead">이름과 연락처를 남겨 주시면 확인 후 연락드립니다. 개인정보는 상담 목적 외로 사용하지 않습니다.</p>
+
+        <?php if ($done) { ?>
+        <p class="ld-form__done" role="status">상담 신청이 접수되었습니다. 확인 후 연락드리겠습니다.</p>
+        <?php } ?>
 
         <form name="ldconsult" method="post" action="<?php echo G5_URL; ?>/page/consult.update.php" class="ld-form" onsubmit="return ld_consult_submit(this);">
             <input type="hidden" name="ld_token" value="<?php echo $token; ?>">

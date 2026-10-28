@@ -6,6 +6,10 @@ header('Content-Type: application/xml; charset=utf-8');
 $pages = array(
     G5_URL . '/',
     ld_page_url('intro'),
+    ld_page_url('doctor'),
+    ld_board_url('notice'),
+    ld_board_url('review'),
+    ld_board_url('faq'),
     ld_page_url('treatment'),
     ld_page_url('hours'),
     ld_page_url('location'),

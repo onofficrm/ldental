@@ -48,6 +48,23 @@
 .ld-form__agree { display: flex; align-items: center; gap: 8px; font-weight: 400; }
 .ld-form__agree input { width: auto; }
 .ld-hp { position: absolute; left: -9999px; height: 0; overflow: hidden; }
+.ld-form__done {
+    background: #e8f7fd;
+    border: 1px solid #b8e6f7;
+    color: #0d5578;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 0 0 20px;
+    font-weight: 700;
+}
+.ld-doctor { display: grid; grid-template-columns: minmax(240px, 360px) 1fr; gap: 28px; align-items: start; margin-bottom: 12px; }
+.ld-doctor__photo { margin-bottom: 0; }
+.ld-doctor h2 { margin: 0 0 16px; font-size: 24px; }
+.ld-doctor__list { margin: 0; padding-left: 20px; color: #516070; line-height: 1.8; }
+.ld-doctor__note { margin: 16px 0 0; color: #8a9aa8; font-size: 14px; }
+@media (max-width: 768px) {
+    .ld-doctor { grid-template-columns: 1fr; }
+}
 .ld-mcta {
     display: none;
     position: fixed;

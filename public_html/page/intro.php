@@ -29,6 +29,12 @@ include_once G5_PATH . '/_head.php';
             </div>
         </div>
 
+        <div class="ld-page__nav">
+            <a href="<?php echo ld_page_url('doctor'); ?>">원장 소개</a>
+            <a href="<?php echo ld_board_url('notice'); ?>">공지사항</a>
+            <a href="<?php echo ld_board_url('review'); ?>">치료후기</a>
+        </div>
+
         <div class="ld-page__cta">
             <a class="ld-btn ld-btn--primary" href="<?php echo ld_page_url('consult'); ?>">상담 예약하기</a>
             <a class="ld-btn ld-btn--ghost" href="<?php echo ld_page_url('treatment'); ?>">진료 안내 보기</a>

@@ -66,6 +66,24 @@ $cares = array(
         </div>
     </section>
 
+    <section class="ld-section" id="news">
+        <div class="ld-wrap">
+            <div class="ld-sec-head">
+                <span>NEWS</span>
+                <h2>공지와 치료 후기</h2>
+                <p>병원 소식과 환자분들의 후기를 확인해 보세요.</p>
+            </div>
+            <div class="ld-board-home">
+                <div class="ld-board-home__col">
+                    <?php echo latest('theme/ld.latest.notice', 'notice', 3, 48); ?>
+                </div>
+                <div class="ld-board-home__col">
+                    <?php echo latest('theme/ld.latest.review', 'review', 4, 60); ?>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="ld-section ld-section--tint" id="service">
         <div class="ld-wrap">
             <div class="ld-sec-head">

@@ -124,8 +124,17 @@ if ($wr_id) {
     }
 }
 
+if (function_exists('delete_cache_latest')) {
+    delete_cache_latest($bo_table);
+}
+
+ldental_notify_consult(
+    '[노경환치과] 상담 접수 - ' . $wr_name,
+    "이름: {$wr_name}\n연락처: {$wr_1}\n관심 진료: {$wr_2}\n희망 방문일: {$wr_3}\n\n{$wr_content}\n\n관리자: " . G5_ADMIN_URL
+);
+
 set_session('ld_consult_token', '');
 set_session('ld_consult_captcha', '');
 set_session('ld_consult_last', G5_SERVER_TIME);
 
-alert('상담 신청이 접수되었습니다. 확인 후 연락드리겠습니다.', G5_URL);
+goto_url(ld_page_url('consult') . '?done=1');
