@@ -1,0 +1,40 @@
+name: Deploy dbconfig to FTP
+
+on:
+  workflow_dispatch:
+
+jobs:
+  upload-dbconfig:
+    runs-on: ubuntu-latest
+    env:
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}
+      FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+      FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+      FTP_PORT: ${{ secrets.FTP_PORT }}
+      DB_HOST: ${{ secrets.DB_HOST }}
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_NAME: ${{ secrets.DB_NAME }}
+      DB_TOKEN_KEY: ${{ secrets.DB_TOKEN_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate secrets
+        run: |
+          for v in DB_HOST DB_USER DB_PASSWORD DB_NAME; do
+            if [ -z "${!v}" ]; then
+              echo "Missing Actions secret: $v"
+              exit 1
+            fi
+          done
+
+      - name: Build dbconfig.php from template
+        run: php .github/scripts/build-dbconfig.php
+
+      - name: Install lftp and upload
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          lftp -u "$FTP_USERNAME,$FTP_PASSWORD" -p "${FTP_PORT:-21}" "$FTP_SERVER" -e "
+            put dbconfig.php -o /public_html/data/dbconfig.php;
+            chmod 644 /public_html/data/dbconfig.php;
+            bye"
