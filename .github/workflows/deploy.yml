@@ -4,6 +4,16 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      clean_slate:
+        description: "true면 FTP public_html을 Git 기준으로 정리(서버만 있는 파일 삭제). dbconfig 등 exclude 유지"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
 
 jobs:
   ftp-deploy:
@@ -22,6 +32,7 @@ jobs:
           protocol: ftp
           local-dir: ./public_html/
           server-dir: /public_html/
+          dangerous-clean-slate: ${{ github.event_name == 'workflow_dispatch' && inputs.clean_slate == 'true' }}
           exclude: |
             **/.git*
             **/.github/**
@@ -37,4 +48,6 @@ jobs:
             data/backup/**
             data/member_image/**
             adminpw.php
+            db_test.php
+            db_alive.php
             *.log
