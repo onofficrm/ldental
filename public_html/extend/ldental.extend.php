@@ -9,6 +9,17 @@ if (is_file($ld_clinic_file)) {
 include_once G5_LIB_PATH . '/ldental.lib.php';
 include_once G5_LIB_PATH . '/ldental.seed.php';
 
+if (defined('G5_DATA_PATH')) {
+    $ld_cache = G5_DATA_PATH . '/cache';
+    if (!is_dir($ld_cache)) {
+        @mkdir($ld_cache, defined('G5_DIR_PERMISSION') ? G5_DIR_PERMISSION : 0755, true);
+        if ($f = @fopen($ld_cache . '/index.php', 'w')) {
+            @fwrite($f, '<?php exit;');
+            @fclose($f);
+        }
+    }
+}
+
 ldental_seed_once();
 if (function_exists('ldental_seed_phase2')) {
     ldental_seed_phase2();
