@@ -15,7 +15,9 @@ function add_admin_bbs_menu_partner($admin_menu){ // 메뉴추가
 }
 
 $pa = sql_fetch (" select * from rb_partner "); // 테이블 조회
-add_stylesheet('<link rel="stylesheet" href="'.G5_THEME_URL.'/rb.css/partner.css?ver='.G5_TIME_YMDHIS.'" />', 0);
+if (defined('G5_THEME_URL')) {
+    add_stylesheet('<link rel="stylesheet" href="'.G5_THEME_URL.'/rb.css/partner.css?ver='.G5_TIME_YMDHIS.'" />', 0);
+}
 
 // 배송비 구함
 function get_sendcost_rb($cart_id, $partner_id, $selected=1)

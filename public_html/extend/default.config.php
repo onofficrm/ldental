@@ -10,3 +10,24 @@ define('G5_USE_MEMBER_IMAGE_FILETIME', TRUE);
 
 // 썸네일 처리 방식, 비율유지 하지 않고 썸네일을 생성하려면 주석을 풀고 값은 false 입력합니다. ( true 또는 주석으로 된 경우에는 비율 유지합니다. )
 //define('G5_USE_THUMB_RATIO', false);
+
+// 신규/초기 DB: cf_theme 미설정 시 레드빌더 기본 테마 (extend 로드 전 common.php에서 테마 상수 미정의 방지)
+if (!defined('G5_THEME_URL')) {
+    $default_theme = 'rb.basic';
+    $default_theme_path = G5_PATH.'/'.G5_THEME_DIR.'/'.$default_theme;
+    if (is_dir($default_theme_path)) {
+        define('G5_THEME_PATH', $default_theme_path);
+        define('G5_THEME_URL', G5_URL.'/'.G5_THEME_DIR.'/'.$default_theme);
+        define('G5_THEME_MOBILE_PATH', $default_theme_path.'/'.G5_MOBILE_DIR);
+        define('G5_THEME_LIB_PATH', $default_theme_path.'/'.G5_LIB_DIR);
+        define('G5_THEME_CSS_URL', G5_THEME_URL.'/'.G5_CSS_DIR);
+        define('G5_THEME_IMG_URL', G5_THEME_URL.'/'.G5_IMG_DIR);
+        define('G5_THEME_JS_URL', G5_THEME_URL.'/'.G5_JS_DIR);
+        if (empty($config['cf_theme'])) {
+            $config['cf_theme'] = $default_theme;
+        }
+        if (is_file(G5_THEME_PATH.'/theme.config.php')) {
+            include_once(G5_THEME_PATH.'/theme.config.php');
+        }
+    }
+}
