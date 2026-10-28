@@ -9,6 +9,7 @@ include_once G5_PATH . '/_head.php';
         <p class="ld-kicker">ABOUT</p>
         <h1>환자를 먼저 생각하는 진료</h1>
         <p class="ld-page__lead">과잉진료 없이, 필요한 치료만 정확하게 안내합니다. <?php echo ld_escape(ld_clinic('name')); ?>는 검사 결과와 치료 계획을 쉽게 풀어 설명하고, 환자가 선택할 수 있게 돕습니다.</p>
+        <img class="ld-page__photo" src="<?php echo G5_THEME_URL; ?>/rb.img/clinic/consult.jpg" alt="진료 상담">
 
         <div class="ld-about">
             <div class="ld-about__card">

@@ -1,4 +1,5 @@
 .ld-page { padding: 80px 0 110px; }
+.ld-page__photo { width: 100%; max-height: 360px; object-fit: cover; border-radius: 20px; margin: 0 0 28px; display: block; }
 .ld-page h1 { font-size: clamp(32px, 4vw, 46px); letter-spacing: -0.03em; margin: 0 0 16px; }
 .ld-page__lead { font-size: 18px; line-height: 1.7; color: #516070; margin: 0 0 36px; max-width: 720px; }
 .ld-page__cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 36px; }
