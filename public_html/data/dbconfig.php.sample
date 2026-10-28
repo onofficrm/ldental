@@ -4,7 +4,7 @@ if (!defined('_GNUBOARD_')) exit;
 define('G5_MYSQL_HOST', 'wuk2002.sldb.iwinv.net');
 define('G5_MYSQL_USER', 'ldental2');
 define('G5_MYSQL_PASSWORD', '여기에_DB비밀번호');
-define('G5_MYSQL_DB', 'ldental2');
+define('G5_MYSQL_DB', 'ldental');
 define('G5_MYSQL_SET_MODE', true);
 
 define('G5_TABLE_PREFIX', 'g5_');
