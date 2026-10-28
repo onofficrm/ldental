@@ -16,6 +16,9 @@ if (function_exists('ldental_seed_phase2')) {
 if (function_exists('ldental_seed_phase3')) {
     ldental_seed_phase3();
 }
+if (function_exists('ldental_seed_phase4')) {
+    ldental_seed_phase4();
+}
 
 if (defined('G5_THEME_URL') && !defined('G5_IS_ADMIN')) {
     add_stylesheet('<link rel="stylesheet" href="' . G5_THEME_URL . '/rb.layout/basic/page.css?ver=' . G5_SERVER_TIME . '">', 1);

@@ -38,22 +38,30 @@ function ldental_phase2_board_tuning()
     $review_bo = function_exists('ldental_clinic_bo_table') ? ldental_clinic_bo_table('review') : 'review';
     $review_bo = sql_real_escape_string($review_bo);
     $review = sql_query(" update {$g5['board_table']}
-                             set bo_skin = 'gallery',
-                                 bo_mobile_skin = 'gallery',
+                             set bo_skin = 'theme/ld.clinic',
+                                 bo_mobile_skin = 'theme/ld.clinic',
                                  bo_gallery_cols = '3',
                                  bo_gallery_width = '400',
                                  bo_gallery_height = '300',
                                  bo_mobile_gallery_width = '280',
                                  bo_mobile_gallery_height = '210',
                                  bo_upload_count = '4',
-                                 bo_use_list_content = '1'
+                                 bo_use_list_content = '1',
+                                 bo_use_list_file = '1'
                            where bo_table = '{$review_bo}' ", false);
 
     $faq = sql_query(" update {$g5['board_table']}
                           set bo_subject = '자주 묻는 질문',
                               bo_mobile_subject = '자주 묻는 질문',
+                              bo_skin = 'theme/ld.clinic',
+                              bo_mobile_skin = 'theme/ld.clinic',
                               bo_use_list_content = '1'
                         where bo_table = 'faq' ", false);
+
+    sql_query(" update {$g5['board_table']}
+                   set bo_skin = 'theme/ld.clinic',
+                       bo_mobile_skin = 'theme/ld.clinic'
+                 where bo_table = 'notice' ", false);
 
     $consult = sql_query(" update {$g5['board_table']}
                               set bo_list_level = '10',

@@ -36,6 +36,9 @@ if (is_file(G5_LIB_PATH . '/ldental.seed.phase2.php')) {
 if (is_file(G5_LIB_PATH . '/ldental.seed.phase3.php')) {
     include_once G5_LIB_PATH . '/ldental.seed.phase3.php';
 }
+if (is_file(G5_LIB_PATH . '/ldental.seed.phase4.php')) {
+    include_once G5_LIB_PATH . '/ldental.seed.phase4.php';
+}
 
 function ldental_seed_config()
 {
