@@ -2,14 +2,14 @@
 if (!defined('_GNUBOARD_')) exit;
 // iwinv MySQL 패널 값으로 수정 후 dbconfig.php 로 복사 (Git/FTP 배포 제외)
 define('G5_MYSQL_HOST', 'wuk2002.sldb.iwinv.net');
-define('G5_MYSQL_USER', 'ldental');
+define('G5_MYSQL_USER', 'ldental2');
 define('G5_MYSQL_PASSWORD', '여기에_DB비밀번호');
-define('G5_MYSQL_DB', 'ldental');
+define('G5_MYSQL_DB', 'ldental2');
 define('G5_MYSQL_SET_MODE', true);
 
 define('G5_TABLE_PREFIX', 'g5_');
 
-define('G5_TOKEN_ENCRYPTION_KEY', ''); // 32자 hex, 기존 사이트 키 유지 또는 bin2hex(random_bytes(16))
+define('G5_TOKEN_ENCRYPTION_KEY', 'b663f24d64582d921335c4245d39cff0');
 
 $g5['write_prefix'] = G5_TABLE_PREFIX.'write_';
 
