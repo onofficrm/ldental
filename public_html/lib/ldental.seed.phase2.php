@@ -35,6 +35,8 @@ function ldental_phase2_board_tuning()
 {
     global $g5;
 
+    $review_bo = function_exists('ldental_clinic_bo_table') ? ldental_clinic_bo_table('review') : 'review';
+    $review_bo = sql_real_escape_string($review_bo);
     $review = sql_query(" update {$g5['board_table']}
                              set bo_skin = 'gallery',
                                  bo_mobile_skin = 'gallery',
@@ -45,7 +47,7 @@ function ldental_phase2_board_tuning()
                                  bo_mobile_gallery_height = '210',
                                  bo_upload_count = '4',
                                  bo_use_list_content = '1'
-                           where bo_table = 'review' ", false);
+                           where bo_table = '{$review_bo}' ", false);
 
     $faq = sql_query(" update {$g5['board_table']}
                           set bo_subject = '자주 묻는 질문',
@@ -71,7 +73,7 @@ function ldental_phase2_menus()
     $items = array(
         array('1010', '원장 소개', ld_page_url('doctor'), 1),
         array('60', '공지사항', $bbs . '/board.php?bo_table=notice', 8),
-        array('70', '치료후기', $bbs . '/board.php?bo_table=review', 9),
+        array('70', '치료후기', ld_board_url('review'), 9),
         array('80', 'FAQ', $bbs . '/board.php?bo_table=faq', 10),
     );
 
@@ -129,8 +131,13 @@ function ldental_phase2_samples()
     );
 
     foreach ($samples as $bo_table => $rows) {
+        $target = $bo_table;
+        if ($bo_table === 'review' && function_exists('ldental_clinic_bo_table')) {
+            ldental_repair_clinic_boards();
+            $target = ldental_clinic_bo_table('review');
+        }
         foreach ($rows as $row) {
-            if (!ldental_insert_sample_write($bo_table, $row[0], $row[1], $row[2])) {
+            if (!ldental_insert_sample_write($target, $row[0], $row[1], $row[2])) {
                 return false;
             }
         }

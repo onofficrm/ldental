@@ -75,10 +75,10 @@ $cares = array(
             </div>
             <div class="ld-board-home">
                 <div class="ld-board-home__col">
-                    <?php echo latest('theme/ld.latest.notice', 'notice', 3, 48); ?>
+                    <?php echo latest('theme/ld.latest.notice', ldental_clinic_bo_table('notice'), 3, 48); ?>
                 </div>
                 <div class="ld-board-home__col">
-                    <?php echo latest('theme/ld.latest.review', 'review', 4, 60); ?>
+                    <?php echo latest('theme/ld.latest.review', ldental_clinic_bo_table('review'), 4, 60); ?>
                 </div>
             </div>
         </div>

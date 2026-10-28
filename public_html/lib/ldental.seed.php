@@ -33,6 +33,9 @@ function ldental_seed_once()
 if (is_file(G5_LIB_PATH . '/ldental.seed.phase2.php')) {
     include_once G5_LIB_PATH . '/ldental.seed.phase2.php';
 }
+if (is_file(G5_LIB_PATH . '/ldental.seed.phase3.php')) {
+    include_once G5_LIB_PATH . '/ldental.seed.phase3.php';
+}
 
 function ldental_seed_config()
 {
@@ -291,7 +294,6 @@ function ldental_ensure_board($gr_id, $bo_table, $subject, $write_level, $list_l
                     bo_comment_min = '0',
                     bo_comment_max = '0',
                     bo_notice = '',
-                    bo_upload_count = '2',
                     bo_sort_field = '',
                     bo_1_subj = '', bo_2_subj = '', bo_3_subj = '', bo_4_subj = '', bo_5_subj = '',
                     bo_6_subj = '', bo_7_subj = '', bo_8_subj = '', bo_9_subj = '', bo_10_subj = '',
