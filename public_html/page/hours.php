@@ -14,7 +14,7 @@ include_once G5_PATH . '/_head.php';
             <li><em>평일</em> <?php echo ld_escape(ld_clinic('hours_weekday')); ?></li>
             <li><em>토요일</em> <?php echo ld_escape(ld_clinic('hours_saturday')); ?></li>
             <li><em>점심시간</em> <?php echo ld_escape(ld_clinic('hours_lunch')); ?></li>
-            <li><em>휴진</em> <?php echo ld_escape(ld_clinic('hours_off')); ?></li>
+            <li><em>일요일·공휴일</em> <?php echo ld_escape(ld_clinic('hours_off')); ?></li>
         </ul>
 
         <div class="ld-page__cta">
