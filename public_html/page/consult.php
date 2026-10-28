@@ -29,9 +29,8 @@ $img = G5_THEME_URL . '/rb.img/clinic';
 
     <div class="ld-wrap ld-consult-grid">
         <aside class="ld-consult-aside">
-            <div class="ld-consult-aside__photo">
-                <img src="<?php echo $img; ?>/care.jpg" alt="<?php echo ld_escape($clinic_name); ?> 진료실">
-            </div>
+            <p class="ld-consult-aside__kicker"><?php echo ld_escape($clinic_name); ?></p>
+            <h2>상담은 이렇게 진행됩니다</h2>
             <ol class="ld-consult-steps">
                 <li>
                     <strong>01</strong>
