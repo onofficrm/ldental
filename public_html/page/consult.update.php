@@ -1,5 +1,5 @@
 <?php
-include_once dirname(__DIR__) . '/_common.php';
+include_once dirname(__DIR__) . '/common.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     goto_url(ld_page_url('consult'));
