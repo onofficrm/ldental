@@ -41,5 +41,7 @@ if (!defined('G5_THEME_URL')) {
 
 if (empty($config['cf_title']) || $config['cf_title'] === '그누보드5') {
     $config['cf_title'] = '노경환치과';
-    $g5['title'] = '노경환치과';
+    if (empty($g5['title']) || $g5['title'] === '그누보드5') {
+        unset($g5['title']);
+    }
 }
