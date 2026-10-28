@@ -8,8 +8,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 <?php
     //리빌드세팅
-    add_stylesheet('<link rel="stylesheet" href="'.G5_URL.'/rb/rb.css/set.color.php?rb_color_set=' . urlencode($rb_core['color']) . '&rb_color_code=' . urlencode($rb_config['co_color']) . '" />', 0);
-    add_stylesheet('<link rel="stylesheet" href="'.G5_URL.'/rb/rb.css/set.header.php?rb_header_set=' . urlencode($rb_core['header']) . '&rb_header_code=' . urlencode($rb_config['co_header']) . '" />', 0);
+    add_stylesheet('<link rel="stylesheet" href="'.G5_URL.'/rb/rb.css/set.color.php?rb_color_set=' . urlencode($rb_core['color']) . '&rb_color_code=' . urlencode($rb_config['co_color'] ?? '') . '" />', 0);
+    add_stylesheet('<link rel="stylesheet" href="'.G5_URL.'/rb/rb.css/set.header.php?rb_header_set=' . urlencode($rb_core['header']) . '&rb_header_code=' . urlencode($rb_config['co_header'] ?? '') . '" />', 0);
     add_stylesheet('<link rel="stylesheet" href="'.G5_URL.'/rb/rb.css/set.style.css?ver='.G5_TIME_YMDHIS.'" />', 0);
 ?>
 
@@ -48,7 +48,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     document.addEventListener('DOMContentLoaded', function () {
         // PHP 데이터를 JavaScript 객체로 전달
         const rbConfig = {
-            headerColor: "<?php echo $rb_config['co_header'] ?>",
+            headerColor: "<?php echo $rb_config['co_header'] ?? '' ?>",
             headerSet: "<?php echo $rb_core['header'] ?>",
             logoMo: "<?php echo !empty($rb_builder['bu_logo_mo']) && !empty($rb_builder['bu_logo_mo_w']) ? G5_URL . '/data/logos/mo' : G5_THEME_URL . '/rb.img/logos/mo.png' ?>",
             logoMoWhite: "<?php echo !empty($rb_builder['bu_logo_mo']) && !empty($rb_builder['bu_logo_mo_w']) ? G5_URL . '/data/logos/mo_w' : G5_THEME_URL . '/rb.img/logos/mo_w.png' ?>",

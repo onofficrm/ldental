@@ -10,6 +10,27 @@ define('RB_VER',  '2.1.6'); // 버전
 $rb_config = sql_fetch (" select * from rb_config "); // 환경설정 테이블 조회
 $rb_builder = sql_fetch (" select * from rb_builder "); // 빌더설정 테이블 조회
 
+// rb_config 행 없음/초기화 DB: 파일에 있는 basic 레이아웃으로 표시 (관리자 저장 전)
+if (!is_array($rb_config) || empty($rb_config['co_layout'])) {
+    $rb_config = array_merge(array(
+        'co_layout' => 'basic',
+        'co_layout_hd' => 'basic',
+        'co_layout_ft' => 'basic',
+        'co_layout_shop' => 'basic',
+        'co_layout_hd_shop' => 'basic_row',
+        'co_layout_ft_shop' => 'basic',
+        'co_font' => 'Pretendard',
+        'co_color' => '2aaeee',
+        'co_header' => 'ffffff',
+        'co_sub_width' => '1400',
+        'co_main_width' => '1400',
+        'co_tb_width' => '1400',
+        'co_main_padding_top' => '0',
+        'co_gap_pc' => '0',
+        'co_inner_padding_pc' => '0',
+        'co_main_padding_top_shop' => '0',
+    ), is_array($rb_config) ? $rb_config : array());
+}
 
 $rb_core['theme'] = isset($config['cf_theme']) ? $config['cf_theme'] : ''; // 테마
 $rb_core['layout'] = isset($rb_config['co_layout']) ? $rb_config['co_layout'] : ''; // 레이아웃(메인)
