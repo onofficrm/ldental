@@ -1,9 +1,12 @@
 <?php
-$host = getenv('DB_HOST') ?: '';
-$user = getenv('DB_USER') ?: '';
-$pass = getenv('DB_PASSWORD') ?: '';
-$db = getenv('DB_NAME') ?: '';
-$key = getenv('DB_TOKEN_KEY') ?: bin2hex(random_bytes(16));
+$host = trim((string) getenv('DB_HOST'));
+$user = trim((string) getenv('DB_USER'));
+$pass = trim((string) getenv('DB_PASSWORD'));
+$db = trim((string) getenv('DB_NAME'));
+$key = trim((string) getenv('DB_TOKEN_KEY'));
+if ($key === '') {
+    $key = bin2hex(random_bytes(16));
+}
 
 if ($host === '' || $user === '' || $pass === '' || $db === '') {
     fwrite(STDERR, "Missing DB_* environment variables.\n");
@@ -16,23 +19,35 @@ if ($sample === false) {
     exit(1);
 }
 
-$out = str_replace(
-    [
-        "define('G5_MYSQL_HOST', 'wuk2002.sldb.iwinv.net');",
-        "define('G5_MYSQL_USER', 'ldental2');",
-        "define('G5_MYSQL_PASSWORD', '여기에_DB비밀번호');",
-        "define('G5_MYSQL_DB', 'ldental2');",
-        "define('G5_TOKEN_ENCRYPTION_KEY', 'b663f24d64582d921335c4245d39cff0');",
-    ],
-    [
-        "define('G5_MYSQL_HOST', " . var_export($host, true) . ');',
-        "define('G5_MYSQL_USER', " . var_export($user, true) . ');',
-        "define('G5_MYSQL_PASSWORD', " . var_export($pass, true) . ');',
-        "define('G5_MYSQL_DB', " . var_export($db, true) . ');',
-        "define('G5_TOKEN_ENCRYPTION_KEY', " . var_export($key, true) . ');',
-    ],
-    $sample
+$replacements = array(
+    'G5_MYSQL_HOST' => $host,
+    'G5_MYSQL_USER' => $user,
+    'G5_MYSQL_PASSWORD' => $pass,
+    'G5_MYSQL_DB' => $db,
+    'G5_TOKEN_ENCRYPTION_KEY' => $key,
 );
 
+$out = $sample;
+foreach ($replacements as $const => $value) {
+    $count = 0;
+    $out = preg_replace(
+        "/define\\('" . preg_quote($const, '/') . "',\\s*'[^']*'\\);/",
+        'define(\'' . $const . '\', ' . var_export($value, true) . ');',
+        $out,
+        1,
+        $count
+    );
+    if ($count !== 1) {
+        fwrite(STDERR, "Failed to replace $const\n");
+        exit(1);
+    }
+}
+
+if (strpos($out, '여기에_DB비밀번호') !== false) {
+    fwrite(STDERR, "Password placeholder was not replaced.\n");
+    exit(1);
+}
+
+fwrite(STDERR, 'dbconfig password_len=' . strlen($pass) . "\n");
 file_put_contents(getcwd() . '/dbconfig.php', $out);
 echo "dbconfig.php generated.\n";
