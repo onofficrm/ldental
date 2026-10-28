@@ -29,12 +29,22 @@ jobs:
           done
 
       - name: Build dbconfig.php from template
-        run: php .github/scripts/build-dbconfig.php
+        env:
+          DBCONFIG_B64: ${{ secrets.DBCONFIG_B64 }}
+        run: |
+          php .github/scripts/build-dbconfig.php
+          if [ -n "$DBCONFIG_B64" ]; then
+            printf '%s' "$DBCONFIG_B64" | base64 -d > dbconfig.php
+            echo "using exact dbconfig secret"
+          fi
+          php -l dbconfig.php
+          php -r 'define("_GNUBOARD_", true); include "dbconfig.php"; if (!defined("G5_MYSQL_HOST") || !defined("G5_MYSQL_USER") || !defined("G5_MYSQL_PASSWORD") || !defined("G5_MYSQL_DB")) { fwrite(STDERR, "dbconfig constants missing\n"); exit(1);} echo "constants_ok shop=".(defined("G5_USE_SHOP") && G5_USE_SHOP ? "on" : "off")."\n";'
 
       - name: Install lftp and upload
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
           lftp -u "$FTP_USERNAME,$FTP_PASSWORD" -p "${FTP_PORT:-21}" "$FTP_SERVER" -e "
+            set ftp:charset utf-8;
             put dbconfig.php -o /public_html/data/dbconfig.php;
             chmod 644 /public_html/data/dbconfig.php;
             bye"
