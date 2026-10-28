@@ -28,6 +28,26 @@ $m = @mysqli_connect(G5_MYSQL_HOST, G5_MYSQL_USER, G5_MYSQL_PASSWORD, G5_MYSQL_D
 if ($m) {
     echo 'connect=ok' . PHP_EOL;
     mysqli_close($m);
-} else {
-    echo 'connect=fail errno=' . mysqli_connect_errno() . PHP_EOL;
+    exit;
 }
+
+echo 'connect=fail errno=' . mysqli_connect_errno() . PHP_EOL;
+
+$m = @mysqli_connect(G5_MYSQL_HOST, G5_MYSQL_USER, G5_MYSQL_PASSWORD);
+if (!$m) {
+    echo 'server_connect=fail errno=' . mysqli_connect_errno() . PHP_EOL;
+    exit;
+}
+
+echo 'server_connect=ok' . PHP_EOL;
+$r = @mysqli_query($m, 'SHOW DATABASES');
+$names = array();
+if ($r) {
+    while ($row = mysqli_fetch_row($r)) {
+        if (!in_array($row[0], array('information_schema', 'performance_schema', 'mysql', 'sys'), true)) {
+            $names[] = $row[0];
+        }
+    }
+}
+echo 'databases=' . implode(',', $names) . PHP_EOL;
+mysqli_close($m);
