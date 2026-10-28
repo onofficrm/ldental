@@ -20,14 +20,8 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_THEME_URL.'/rb.layout_ft/'.$rb
                     <a href="<?php echo get_pretty_url('content', 'privacy'); ?>">개인정보 처리방침</a>
                 </ul>
                 <ul class="footer_gnb_ul2">
-                    <?php if (false && defined('G5_USE_SHOP') && G5_USE_SHOP) { ?>
-                        <a href="<?php echo G5_SHOP_URL ?>/">마켓</a>
-                    <?php } ?>
-
-                    <a href="<?php echo G5_BBS_URL ?>/qalist.php">1:1 문의</a>
-                    <a href="<?php echo G5_BBS_URL ?>/faq.php">FAQ</a>
-                    <a href="<?php echo G5_URL ?>/rb/new.php">새글</a>
-                    <a href="<?php echo G5_BBS_URL ?>/current_connect.php">접속자 <?php echo connect("theme/rb.connect"); ?></a>
+                    <a href="<?php echo function_exists('ld_page_url') ? ld_page_url('consult') : G5_BBS_URL.'/qalist.php'; ?>">상담예약</a>
+                    <a href="<?php echo G5_BBS_URL ?>/board.php?bo_table=faq">FAQ</a>
                 </ul>
                 <div class="cb"></div>
             </div>
@@ -40,7 +34,7 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_THEME_URL.'/rb.layout_ft/'.$rb
                         <?php if (!empty($rb_builder['bu_logo_pc_w'])) { ?>
                             <a href="#"><img src="<?php echo G5_URL ?>/data/logos/pc_w?ver=<?php echo G5_SERVER_TIME ?>"></a>
                         <?php } else { ?>
-                            <a href="#"><img src="<?php echo G5_THEME_URL ?>/rb.img/logos/pc_w.png?ver=<?php echo G5_SERVER_TIME ?>"></a>
+                            <a href="<?php echo G5_URL ?>" class="ld-wordmark"><?php echo function_exists('ld_clinic') ? ld_escape(ld_clinic('name')) : '노경환치과'; ?></a>
                         <?php } ?>
                         
                         <div class="mobile">

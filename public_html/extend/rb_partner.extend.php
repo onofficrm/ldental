@@ -1,5 +1,6 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
+if (!defined('G5_USE_SHOP') || !G5_USE_SHOP) return;
 
 add_replace('admin_menu', 'add_admin_bbs_menu_partner', 0, 1); // 관리자 메뉴를 추가함
 

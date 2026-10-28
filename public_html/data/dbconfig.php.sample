@@ -45,7 +45,7 @@ $g5['menu_table'] = G5_TABLE_PREFIX.'menu';
 $g5['social_profile_table'] = G5_TABLE_PREFIX.'member_social_profiles';
 $g5['member_cert_history_table'] = G5_TABLE_PREFIX.'member_cert_history';
 
-define('G5_USE_SHOP', true);
+define('G5_USE_SHOP', false);
 
 define('G5_SHOP_TABLE_PREFIX', 'g5_shop_');
 

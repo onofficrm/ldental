@@ -99,10 +99,11 @@ add_stylesheet('<link rel="stylesheet" href="'.G5_THEME_URL.'/rb.layout_hd/'.$rb
                     ?>
                     
                     <?php if ($i == 0) {  ?>
-                    <li><a href="<?php echo G5_URL ?>/#intro" class="font-B">병원소개</a></li>
-                    <li><a href="<?php echo G5_URL ?>/#service" class="font-B">진료안내</a></li>
-                    <li><a href="<?php echo G5_URL ?>/#hours" class="font-B">진료시간</a></li>
-                    <li><a href="<?php echo G5_URL ?>/#consult" class="font-B">상담예약</a></li>
+                    <li><a href="<?php echo function_exists('ld_page_url') ? ld_page_url('intro') : G5_URL.'/#intro'; ?>" class="font-B">병원소개</a></li>
+                    <li><a href="<?php echo function_exists('ld_page_url') ? ld_page_url('treatment') : G5_URL.'/#service'; ?>" class="font-B">진료안내</a></li>
+                    <li><a href="<?php echo function_exists('ld_page_url') ? ld_page_url('hours') : G5_URL.'/#hours'; ?>" class="font-B">진료시간</a></li>
+                    <li><a href="<?php echo function_exists('ld_page_url') ? ld_page_url('location') : G5_URL.'/#hours'; ?>" class="font-B">오시는 길</a></li>
+                    <li><a href="<?php echo function_exists('ld_page_url') ? ld_page_url('consult') : G5_URL.'/#consult'; ?>" class="font-B">상담예약</a></li>
                     <?php } ?>
                     </ul>
                 </nav>

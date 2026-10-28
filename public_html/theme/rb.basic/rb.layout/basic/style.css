@@ -73,7 +73,8 @@
 }
 .ld-about__card strong { color: #2aaeee; font-size: 22px; }
 .ld-about__card h3, .ld-grid article h3 { margin: 12px 0 10px; font-size: 22px; }
-.ld-about__card p, .ld-grid article p { margin: 0; color: #5b6b78; line-height: 1.7; }
+.ld-about__card p, .ld-grid article p { margin: 0 0 16px; color: #5b6b78; line-height: 1.7; }
+.ld-grid article a { color: #2aaeee !important; font-weight: 700; text-decoration: none !important; }
 .ld-banner { display: block; overflow: hidden; border-radius: 20px; box-shadow: 0 14px 40px rgba(20,40,60,.08); }
 .ld-banner img { width: 100%; display: block; }
 .ld-section--dark { background: #10222e; color: #fff; }

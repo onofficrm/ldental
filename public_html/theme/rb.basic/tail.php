@@ -1,12 +1,12 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
-if (G5_IS_MOBILE) {
+if (G5_IS_MOBILE && is_file(G5_THEME_MOBILE_PATH.'/tail.php') && defined('LD_USE_MOBILE_THEME')) {
     include_once(G5_THEME_MOBILE_PATH.'/tail.php');
     return;
 }
 
-if(G5_COMMUNITY_USE === false) {
+if(G5_COMMUNITY_USE === false && defined('G5_USE_SHOP') && G5_USE_SHOP) {
     include_once(G5_THEME_SHOP_PATH.'/shop.tail.php');
     return;
 }
@@ -99,10 +99,11 @@ if(G5_COMMUNITY_USE === false) {
                     }   //end foreach $row
                     if ($i == 0) {
                     ?>
-                    <li><a href="<?php echo G5_URL ?>/#intro" class="font-B">병원소개</a></li>
-                    <li><a href="<?php echo G5_URL ?>/#service" class="font-B">진료안내</a></li>
-                    <li><a href="<?php echo G5_URL ?>/#hours" class="font-B">진료시간</a></li>
-                    <li><a href="<?php echo G5_URL ?>/#consult" class="font-B">상담예약</a></li>
+                    <li><a href="<?php echo function_exists('ld_page_url') ? ld_page_url('intro') : G5_URL.'/#intro'; ?>" class="font-B">병원소개</a></li>
+                    <li><a href="<?php echo function_exists('ld_page_url') ? ld_page_url('treatment') : G5_URL.'/#service'; ?>" class="font-B">진료안내</a></li>
+                    <li><a href="<?php echo function_exists('ld_page_url') ? ld_page_url('hours') : G5_URL.'/#hours'; ?>" class="font-B">진료시간</a></li>
+                    <li><a href="<?php echo function_exists('ld_page_url') ? ld_page_url('location') : G5_URL.'/#hours'; ?>" class="font-B">오시는 길</a></li>
+                    <li><a href="<?php echo function_exists('ld_page_url') ? ld_page_url('consult') : G5_URL.'/#consult'; ?>" class="font-B">상담예약</a></li>
                     <?php } ?>
                     </ul>
                 </nav>
@@ -277,6 +278,20 @@ if(G5_COMMUNITY_USE === false) {
 
 </script>
 <!-- } -->
+
+<nav class="ld-mcta" aria-label="모바일 바로가기">
+    <?php if (function_exists('ld_clinic_phone_ready') && ld_clinic_phone_ready()) { ?>
+    <a href="<?php echo ld_escape(ld_clinic('phone_href')); ?>">전화</a>
+    <?php } else { ?>
+    <a href="<?php echo function_exists('ld_page_url') ? ld_page_url('hours') : G5_URL; ?>">진료시간</a>
+    <?php } ?>
+    <?php if (function_exists('ld_clinic_kakao_ready') && ld_clinic_kakao_ready()) { ?>
+    <a href="<?php echo ld_escape(ld_clinic('kakao')); ?>" target="_blank" rel="noopener">카카오톡</a>
+    <?php } else { ?>
+    <a href="<?php echo function_exists('ld_page_url') ? ld_page_url('location') : G5_URL; ?>">오시는 길</a>
+    <?php } ?>
+    <a class="is-primary" href="<?php echo function_exists('ld_page_url') ? ld_page_url('consult') : G5_URL; ?>">상담예약</a>
+</nav>
 
 <?php
     //리빌드세팅

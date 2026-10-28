@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /adm/
+Disallow: /data/
+Disallow: /extend/
+Disallow: /lib/
+Disallow: /shop/
+Disallow: /plugin/
+Disallow: /page/consult.update.php
+
+Sitemap: https://ldental.iwinv.net/sitemap.php

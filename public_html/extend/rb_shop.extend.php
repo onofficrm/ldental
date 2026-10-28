@@ -1,5 +1,6 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
+if (!defined('G5_USE_SHOP') || !G5_USE_SHOP) return;
 
 // 크롭옵션을 사용하기위해 별도함수 사용
 function rb_it_image($it_id, $width, $height=0, $anchor=false, $img_id='', $img_alt='', $is_crop=true)

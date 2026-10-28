@@ -1,0 +1,78 @@
+.ld-page { padding: 80px 0 110px; }
+.ld-page h1 { font-size: clamp(32px, 4vw, 46px); letter-spacing: -0.03em; margin: 0 0 16px; }
+.ld-page__lead { font-size: 18px; line-height: 1.7; color: #516070; margin: 0 0 36px; max-width: 720px; }
+.ld-page__cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 36px; }
+.ld-page__nav { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 32px; }
+.ld-page__nav a {
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: #f3f8fb;
+    color: #1d2a36 !important;
+    text-decoration: none !important;
+    font-weight: 700;
+}
+.ld-page__list { display: grid; gap: 18px; }
+.ld-page__list article {
+    background: #fff;
+    border: 1px solid #e8eef3;
+    border-radius: 20px;
+    padding: 32px 28px;
+    box-shadow: 0 10px 30px rgba(20, 40, 60, .04);
+}
+.ld-page__list h2 { margin: 0 0 10px; font-size: 26px; }
+.ld-page__list p { color: #5b6b78; line-height: 1.7; margin: 0 0 20px; }
+.ld-page__hours { list-style: none; padding: 0; margin: 0; max-width: 520px; }
+.ld-page__hours li {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #e8eef3;
+}
+.ld-page__hours em { font-style: normal; color: #2aaeee; font-weight: 700; }
+.ld-map { border-radius: 20px; overflow: hidden; border: 1px solid #e8eef3; margin: 0 0 20px; }
+.ld-map iframe { width: 100%; height: 360px; border: 0; display: block; }
+.ld-consult { max-width: 720px; }
+.ld-form { display: grid; gap: 16px; }
+.ld-form label { display: grid; gap: 8px; font-weight: 700; }
+.ld-form .frm_input, .ld-form textarea, .ld-form select {
+    width: 100%;
+    border: 1px solid #d7e3ec;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-weight: 400;
+}
+.ld-form__agree { display: flex; align-items: center; gap: 8px; font-weight: 400; }
+.ld-form__agree input { width: auto; }
+.ld-hp { position: absolute; left: -9999px; height: 0; overflow: hidden; }
+.ld-mcta {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    background: #10222e;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    grid-template-columns: 1fr 1fr 1.2fr;
+    gap: 8px;
+}
+.ld-mcta a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    border-radius: 12px;
+    color: #fff !important;
+    text-decoration: none !important;
+    font-weight: 700;
+    background: #2a3c48;
+}
+.ld-mcta a.is-primary { background: #2aaeee; }
+@media (max-width: 1024px) {
+    body { padding-bottom: 72px; }
+    .ld-mcta { display: grid; }
+    .ld-page { padding-top: 48px; }
+}

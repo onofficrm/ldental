@@ -78,5 +78,19 @@ jQuery(function($) {
 });
 </script>
 
+<nav class="ld-mcta" aria-label="모바일 바로가기">
+    <?php if (function_exists('ld_clinic_phone_ready') && ld_clinic_phone_ready()) { ?>
+    <a href="<?php echo ld_escape(ld_clinic('phone_href')); ?>">전화</a>
+    <?php } else { ?>
+    <a href="<?php echo function_exists('ld_page_url') ? ld_page_url('hours') : G5_URL; ?>">진료시간</a>
+    <?php } ?>
+    <?php if (function_exists('ld_clinic_kakao_ready') && ld_clinic_kakao_ready()) { ?>
+    <a href="<?php echo ld_escape(ld_clinic('kakao')); ?>" target="_blank" rel="noopener">카카오톡</a>
+    <?php } else { ?>
+    <a href="<?php echo function_exists('ld_page_url') ? ld_page_url('location') : G5_URL; ?>">오시는 길</a>
+    <?php } ?>
+    <a class="is-primary" href="<?php echo function_exists('ld_page_url') ? ld_page_url('consult') : G5_URL; ?>">상담예약</a>
+</nav>
+
 <?php
 include_once(G5_THEME_PATH."/tail.sub.php");

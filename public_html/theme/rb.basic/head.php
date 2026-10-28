@@ -1,12 +1,12 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
-if (G5_IS_MOBILE) {
+if (G5_IS_MOBILE && is_file(G5_THEME_MOBILE_PATH.'/head.php') && defined('LD_USE_MOBILE_THEME')) {
     include_once(G5_THEME_MOBILE_PATH.'/head.php');
     return;
 }
 
-if(G5_COMMUNITY_USE === false) {
+if(G5_COMMUNITY_USE === false && defined('G5_USE_SHOP') && G5_USE_SHOP) {
     define('G5_IS_COMMUNITY_PAGE', true);
     include_once(G5_THEME_SHOP_PATH.'/shop.head.php');
     return;

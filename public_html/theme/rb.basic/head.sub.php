@@ -48,14 +48,19 @@ header("Pragma: no-cache"); // HTTP/1.0
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <!-- } -->
 
-<?php if(isset($seo['se_title']) && $seo['se_title'] || isset($seo['se_keywords']) && $seo['se_keywords'] || isset($seo['se_description']) && $seo['se_description']) { ?>
+<?php
+$ld_seo_title = isset($seo['se_title']) && $seo['se_title'] ? $seo['se_title'] : $g5_head_title;
+$ld_seo_keywords = isset($seo['se_keywords']) && $seo['se_keywords'] ? $seo['se_keywords'] : (function_exists('ld_clinic') ? ld_clinic('keywords') : '노경환치과, 임플란트, 치아교정');
+$ld_seo_description = isset($seo['se_description']) && $seo['se_description'] ? $seo['se_description'] : (function_exists('ld_clinic') ? ld_clinic('description') : $g5_head_title);
+$ld_og_title = isset($seo['se_og_title']) && $seo['se_og_title'] ? $seo['se_og_title'] : $ld_seo_title;
+$ld_og_description = isset($seo['se_og_description']) && $seo['se_og_description'] ? $seo['se_og_description'] : $ld_seo_description;
+?>
 <!-- META { -->
-<meta name="title" content="<?php echo $seo['se_title'] ?>" />
-<meta name="keywords" content="<?php echo $seo['se_keywords'] ?>" />
-<meta name="description" content="<?php echo $seo['se_description'] ?>" />
+<meta name="title" content="<?php echo ld_escape($ld_seo_title); ?>" />
+<meta name="keywords" content="<?php echo ld_escape($ld_seo_keywords); ?>" />
+<meta name="description" content="<?php echo ld_escape($ld_seo_description); ?>" />
 <meta name="robots" content="index,follow" />
-<!-- } --
-<?php } ?>
+<!-- } -->
 
 <!-- OG { -->
 <meta property="og:type" content="website">
@@ -87,21 +92,11 @@ header("Pragma: no-cache"); // HTTP/1.0
     <meta property="og:image" content="<?php echo $meta_img ?>?ver=<?php echo G5_TIME_YMDHIS ?>"/>
     
 <?php } else { ?>
-   
-    <?php if(isset($seo['se_og_title']) && $seo['se_og_title']) { ?>
-        <meta property="og:title" content="<?php echo $seo['se_og_title'] ?>" />
-    <?php } ?>
-    <?php if(isset($seo['se_og_description']) && $seo['se_og_description']) { ?>
-        <?php if(defined('_INDEX_')) { ?>
-            <meta property="og:description" content="<?php echo $seo['se_og_description'] ?>" />
-        <?php } else { ?>
-            <meta property="og:description" content="<?php echo $g5_head_title; ?>" />
-        <?php } ?>
-    <?php } ?>
+    <meta property="og:title" content="<?php echo ld_escape($ld_og_title); ?>" />
+    <meta property="og:description" content="<?php echo ld_escape(defined('_INDEX_') ? $ld_og_description : $g5_head_title); ?>" />
     <?php if(isset($seo['se_og_image']) && $seo['se_og_image']) { ?>
         <meta property="og:image" content="<?php echo G5_URL ?>/data/seo/og_image?ver=<?php echo G5_TIME_YMDHIS ?>" />
     <?php } ?>
-
 <?php } ?>
 <!-- } -->
 
