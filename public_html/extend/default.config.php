@@ -29,5 +29,12 @@ if (!defined('G5_THEME_URL')) {
         if (is_file(G5_THEME_PATH.'/theme.config.php')) {
             include_once(G5_THEME_PATH.'/theme.config.php');
         }
+        // shop.config.php는 extend보다 먼저 실행되어, 여기서 테마를 잡으면 쇼핑몰 테마 URL도 필요
+        if (defined('G5_USE_SHOP') && G5_USE_SHOP && !defined('G5_THEME_SHOP_URL')) {
+            define('G5_THEME_SHOP_PATH', G5_THEME_PATH.'/'.G5_SHOP_DIR);
+            define('G5_THEME_SHOP_URL', G5_THEME_URL.'/'.G5_SHOP_DIR);
+            define('G5_THEME_MSHOP_PATH', G5_THEME_PATH.'/'.G5_MOBILE_DIR.'/'.G5_SHOP_DIR);
+            define('G5_THEME_MSHOP_URL', G5_THEME_URL.'/'.G5_MOBILE_DIR.'/'.G5_SHOP_DIR);
+        }
     }
 }
